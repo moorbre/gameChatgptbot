@@ -20,7 +20,7 @@ class ChatgptHandler:
     def cs2_died_excuse(self):
         blame_targets = ["my teammates","my wife", "my son", "W.O.M.B.L.E", "womble", "my equipment", "the economy", "the enemy whilst complimenting them", "myself from wasting time writing up excuses", "discord", "skype", "my upbringing", "the schools",
                          "my incredible ability to fumble in any situation", "bee movie", "boomers", "gen z", "the price of bitcoin", "literally anything unrelated to the game", "I thought I was playing valorant", "my low self esteem",
-                         "the fragility of human life", "my ego", "lack of moral support", "capitalism"]
+                         "the fragility of human life", "my ego", "lack of moral support", "capitalism", "being busy eating a random messy snack", "barry buying a scout"]
         response = self.client.chat.completions.create(
             model=self.default_model,
             temperature=self.default_temperature,
@@ -60,31 +60,6 @@ class ChatgptHandler:
                 {"role": "user", "content": "create a phrase that is an excuse on why you died in a game of dota2, make it very obscure. Start the phrase with I only died because."},
                 {"role": "user", "content": "make it even more obscure"},
                 {"role": "user", "content": "make it even more obscure and blame " + random.choice(blame_targets)}
-            ]
-        )
-        print(response.choices[0].message.content)
-        return self.clean_text(response.choices[0].message.content)
-
-
-    def rocketleague_scored_verbose(self):
-        response = self.client.chat.completions.create(
-            model=self.default_model,
-            temperature=self.default_temperature,
-            messages=[
-                #{"role": "system", "content": "You can only respond in 130 characters or less"},
-                {"role": "user", "content": "create a phrase that is very verbose, that states that we have iterated our score by 1 and therefore have brought our team closer to winning in rocket league"}
-            ]
-        )
-        print(response.choices[0].message.content)
-        return self.clean_text(response.choices[0].message.content)
-
-    def rocketleague_scored_against_verbose(self):
-        response = self.client.chat.completions.create(
-            model=self.default_model,
-            temperature=self.default_temperature,
-            messages=[
-                #{"role": "system", "content": "You can only respond in 130 characters or less"},
-                    {"role": "user", "content": "create a phrase that is very verbose, that states that the opposing team have iterated their score by 1 and therefore have brought their team closer to winning in rocket league"}
             ]
         )
         print(response.choices[0].message.content)
@@ -134,8 +109,38 @@ class ChatgptHandler:
         print(response.choices[0].message.content)
         return self.clean_text(response.choices[0].message.content)
 
+    def pause_phrase(self):
+        response = self.client.chat.completions.create(
+            model=self.default_model,
+            temperature=self.default_temperature,
+            messages=[
+                #{"role": "system", "content": "You can only respond in 200 characters or less"},
+                {"role": "user", "content": "create a message venting frustration of a game being paused"},
+                {"role": "user", "content": "make it even more obscure"},
+                {"role": "user", "content": "make it even more obscure"}
+            ]
+        )
+        print(response.choices[0].message.content)
+        return self.clean_text(response.choices[0].message.content)
+
+    def funfact_phrase(self):
+        response = self.client.chat.completions.create(
+            model=self.default_model,
+            temperature=self.default_temperature,
+            messages=[
+                {"role": "system", "content": "You can only respond in 300 characters or less"},
+                {"role": "user", "content": "give me a fun fact"},
+                {"role": "user", "content": "make it even more obscure"},
+                {"role": "user", "content": "make it even more obscure"}
+            ]
+        )
+        print(response.choices[0].message.content)
+        return self.clean_text(response.choices[0].message.content)
+
     def clean_text(self, text):
         if text.startswith('"') and text.endswith('"'):
             return text[1:-1]
         elif text.startswith("'") and text.endswith("'"):
             return text[1:-1]
+        else:
+            return text

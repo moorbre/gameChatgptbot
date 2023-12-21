@@ -83,6 +83,14 @@ def on_key_event(e):
             text_to_type = chatgptHandler.rocketleague_scored()
             rocketleague_type_text(text_to_type, open_chat_key='t', chat_closes_on_send=False)
 
+        if e.name == 'f5' and keyboard.is_pressed('ctrl'):
+            text_to_type = chatgptHandler.funfact_phrase()
+            rocketleague_type_text(text_to_type, open_chat_key='enter', chat_closes_on_send=True)
+
+        if e.name == 'f6' and keyboard.is_pressed('ctrl'):
+            text_to_type = chatgptHandler.dota2_died_excuse()
+            rocketleague_type_text(text_to_type, open_chat_key='enter', chat_closes_on_send=True)
+
         if e.name == 'f7' and keyboard.is_pressed('ctrl'):
             text_to_type = chatgptHandler.cs2_survived_excuse()
             cs_type_text(text_to_type, open_chat_key='y', chat_closes_on_send=False)
@@ -91,9 +99,9 @@ def on_key_event(e):
             text_to_type = chatgptHandler.cs2_died_excuse()
             cs_type_text(text_to_type, open_chat_key='y', chat_closes_on_send=False)
 
-        if e.name == 'f11' and keyboard.is_pressed('ctrl'):
-            text_to_type = chatgptHandler.dota2_died_excuse()
-            cs_type_text(text_to_type, open_chat_key='enter', chat_closes_on_send=True)
+        if e.name == 'f9' and keyboard.is_pressed('ctrl'):
+            text_to_type = chatgptHandler.pause_phrase()
+            rocketleague_type_text(text_to_type, open_chat_key='enter', chat_closes_on_send=True)
 
         if e.name == 'f12' and keyboard.is_pressed('ctrl'):
             chatgptHandler.refresh_client()

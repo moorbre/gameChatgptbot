@@ -1,11 +1,14 @@
 from openai import OpenAI
+import configparser
 import random
 
 #approx cost of an excuse = $0.00008, my $5 62,500 excuses
 class ChatgptHandler:
 
     def __init__(self):
-        self.api_key = ''
+        config = configparser.ConfigParser()
+        config.read('../config/config.ini')
+        self.api_key = config['openai']['api_key']
         self.client = OpenAI(
             api_key = self.api_key,
         )

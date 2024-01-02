@@ -14,21 +14,21 @@ class ChatgptHandler:
         )
         self.default_model = "gpt-3.5-turbo-1106" ##"gpt-4-1106-preview"
         self.default_temperature = 1.2 # default is 1, setting too high can take too long. Effectively changes the randomeness
-
+        self.persona_list = ['someone who can only communicate in rhyme','a regular person', 'trump', 'an egirl', 'a really sarcastic person']
     def refresh_client(self):
         print("refreshing client")
         self.client = OpenAI(
             api_key = self.api_key,
         )
     def cs2_died_excuse(self):
-        blame_targets = ["my teammates","my wife", "my son", "W.O.M.B.L.E", "womble", "my equipment", "the economy", "the enemy whilst complimenting them", "myself from wasting time writing up excuses", "discord", "skype", "my upbringing", "the schools",
+        blame_targets = ["my teammates","my marriage", "my son", "W.O.M.B.L.E", "womble", "my equipment", "the economy", "the enemy whilst complimenting them", "myself from wasting time writing up excuses", "discord", "skype", "my upbringing", "the schools",
                          "my incredible ability to fumble in any situation", "bee movie", "boomers", "gen z", "the price of bitcoin", "literally anything unrelated to the game", "I thought I was playing valorant", "my low self esteem",
                          "the fragility of human life", "my ego", "lack of moral support", "capitalism", "being busy eating a random messy snack", "barry buying a scout"]
         response = self.client.chat.completions.create(
             model=self.default_model,
             temperature=self.default_temperature,
             messages=[
-                {"role": "system", "content": "limit your answers to a couple of sentences"},
+                {"role": "system", "content": "limit your answers to a couple of sentences " + "and answer in the persona of " + random.choice(self.persona_list)},
                 {"role": "user", "content": "create a phrase that is an excuse on why you failed to win a 1v1 in counter strike, make it very obscure. Start the phrase with I only died because."},
                 #{"role": "user", "content": "make it even more obscure"},
                 {"role": "user", "content": "make it even more obscure and blame " + random.choice(blame_targets)}
@@ -38,12 +38,12 @@ class ChatgptHandler:
         return self.clean_text(response.choices[0].message.content)
 
     def cs2_survived_excuse(self):
-        blame_targets = ["my teammates","my wife", "my son", "my equipment", "the economy", "the enemy whilst complimenting them", "discord", "skype", "literally anything unrelated to the game", "moral support", "the enemy's incompetence"]
+        blame_targets = ["my teammates","my marriage", "my son", "my equipment", "the economy", "the enemy whilst complimenting them", "discord", "skype", "literally anything unrelated to the game", "moral support", "the enemy's incompetence"]
         response = self.client.chat.completions.create(
             model=self.default_model,
             temperature=self.default_temperature,
             messages=[
-                {"role": "system", "content": "limit your answers to a couple of sentences"},
+                {"role": "system", "content": "limit your answers to a couple of sentences " + "and answer in the persona of " + random.choice(self.persona_list)},
                 {"role": "user", "content": "create a phrase that is a reason why you survied a round in counter strike, make it very obscure."},
                # {"role": "user", "content": "make it even more obscure"},
                 {"role": "user", "content": "make it even more obscure and the reason I survived was because of " + random.choice(blame_targets)}
@@ -54,7 +54,7 @@ class ChatgptHandler:
 
 
     def dota2_died_excuse(self):
-        blame_targets = ["my teammates","my wife", "my son", "my equipment", "physics", "the enemy whilst complimenting them", "myself from wasting time writing up excuses", "my upbringing", "the schools", "literally anything unrelated to the game"]
+        blame_targets = ["my teammates","my marriage", "my son", "my equipment", "physics", "the enemy whilst complimenting them", "myself from wasting time writing up excuses", "my upbringing", "the schools", "literally anything unrelated to the game"]
         response = self.client.chat.completions.create(
             model=self.default_model,
             temperature=self.default_temperature,
@@ -70,7 +70,9 @@ class ChatgptHandler:
 
 
     def rocketleague_scored(self):
-        despite_targets = ["my teammates","my wife", "my son", "my equipment", "the economy", "the enemy whilst complimenting them", "skype", "my upbringing", "the schools", "literally anything unrelated to the game", "my low self esteem"]
+        despite_targets = ["my teammates","my marriage", "my son", "my equipment", "the economy", "the enemy whilst complimenting them", "myself from wasting time writing up excuses", "discord", "skype", "my upbringing", "the schools",
+                           "my incredible ability to fumble in any situation", "bee movie", "boomers", "gen z", "the price of bitcoin", "literally anything unrelated to the game", "I thought I was playing fifa", "my low self esteem",
+                           "the fragility of human life", "my ego", "lack of moral support", "capitalism", "being busy eating a random messy snack"]
         response = self.client.chat.completions.create(
             model=self.default_model,
             temperature=self.default_temperature,
@@ -85,7 +87,9 @@ class ChatgptHandler:
         return self.clean_text(response.choices[0].message.content)
 
     def rocketleague_scored_against(self):
-        blame_targets = ["my teammates","my wife", "my son", "my equipment", "the economy", "the enemy whilst complimenting them", "myself from wasting time writing up excuses", "discord", "skype", "my upbringing", "the schools", "my upbringing", "the schools", "literally anything unrelated to the game", "my low self esteem", "psyonix", "my boomer skills", "my incredible ability to fumble in any situation"]
+        blame_targets = ["my teammates","my marriage", "my son", "my equipment", "the economy", "the enemy whilst complimenting them", "myself from wasting time writing up excuses", "discord", "skype", "my upbringing", "the schools",
+                         "my incredible ability to fumble in any situation", "bee movie", "boomers", "gen z", "the price of bitcoin", "literally anything unrelated to the game", "I thought I was playing fifa", "my low self esteem",
+                         "the fragility of human life", "my ego", "lack of moral support", "capitalism", "being busy eating a random messy snack"]
         response = self.client.chat.completions.create(
             model=self.default_model,
             temperature=self.default_temperature,

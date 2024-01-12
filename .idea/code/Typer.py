@@ -67,7 +67,7 @@ def split_string_on_spaces(input_string, max_length=100):
 
     return result
 
-def on_key_event(e):
+def on_key_event(e): 
     if e.event_type == keyboard.KEY_DOWN:
         #print(e.name)
 
@@ -76,23 +76,23 @@ def on_key_event(e):
             cs_type_text(text_to_type, open_chat_key='', chat_closes_on_send=False)
         if e.name == 'f2' and keyboard.is_pressed('ctrl'):
             text_to_type = chatgptHandler.rocketleague_phrase()
-            rocketleague_type_text(text_to_type, open_chat_key='t', input_limit=110, chat_closes_on_send=False)
+            rocketleague_type_text(text_to_type, open_chat_key='t', input_limit=120, chat_closes_on_send=False)
 
         if e.name == 'f3' and keyboard.is_pressed('ctrl'):
             text_to_type = chatgptHandler.rocketleague_scored_against()
-            rocketleague_type_text(text_to_type, open_chat_key='t', input_limit=110, chat_closes_on_send=False)
+            rocketleague_type_text(text_to_type, open_chat_key='t', input_limit=120, chat_closes_on_send=False)
 
         if e.name == 'f4' and keyboard.is_pressed('ctrl'):
             text_to_type = chatgptHandler.rocketleague_scored()
-            rocketleague_type_text(text_to_type, open_chat_key='t', input_limit=110, chat_closes_on_send=False)
+            rocketleague_type_text(text_to_type, open_chat_key='t', input_limit=120, chat_closes_on_send=False)
 
         if e.name == 'f5' and keyboard.is_pressed('ctrl'):
             text_to_type = chatgptHandler.funfact_phrase()
             rocketleague_type_text(text_to_type, open_chat_key='enter', chat_closes_on_send=True)
 
         if e.name == 'f6' and keyboard.is_pressed('ctrl'):
-            text_to_type = chatgptHandler.dota2_died_excuse()
-            rocketleague_type_text(text_to_type, open_chat_key='enter', chat_closes_on_send=True)
+            text_to_type = chatgptHandler.cs2_sean_excuse()
+            cs_type_text(text_to_type, open_chat_key='y', input_limit=110, chat_closes_on_send=False)
 
         if e.name == 'f7' and keyboard.is_pressed('ctrl'):
             text_to_type = chatgptHandler.cs2_survived_excuse()
@@ -105,6 +105,10 @@ def on_key_event(e):
         if e.name == 'f9' and keyboard.is_pressed('ctrl'):
             text_to_type = chatgptHandler.pause_phrase()
             cs_type_text(text_to_type, open_chat_key='y', input_limit=110, chat_closes_on_send=True)
+
+        if e.name == 'f10' and keyboard.is_pressed('ctrl'):
+            text_to_type = chatgptHandler.wife_message()
+            cs_type_text(text_to_type, open_chat_key='y', input_limit=500, chat_closes_on_send=True)
 
         if e.name == 'f12' and keyboard.is_pressed('ctrl'):
             chatgptHandler.refresh_client()
